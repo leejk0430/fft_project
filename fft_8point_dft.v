@@ -10,8 +10,8 @@
 // Target Devices:
 // Tool Versions:
 // Description: output FFT of number of 8 data each 8bit.
-//              used radix-2
-//				no consider about overflow.
+//              Used radix-2 buttefly operation for FFT.
+//				Did not consider overflow.
 //				handshake ver.
 // Dependencies:
 //
@@ -95,6 +95,54 @@ module fft_8point(
     reg [15:0] r_X_7_imag;
 
 
+
+    reg signed [15:0] Xee_0_real;
+    reg signed [15:0] Xee_1_real;
+    reg signed [15:0] Xeo_0_real;
+    reg signed [15:0] Xeo_1_real;
+    reg signed [15:0] Xoe_0_real;
+    reg signed [15:0] Xoe_1_real;
+    reg signed [15:0] Xoo_0_real;
+    reg signed [15:0] Xoo_1_real;
+
+    reg signed [15:0] Xe_0_real;
+    reg signed [15:0] Xe_0_imag;
+    reg signed [15:0] Xe_1_real;
+    reg signed [15:0] Xe_1_imag;
+    reg signed [15:0] Xe_2_real;
+    reg signed [15:0] Xe_2_imag;
+    reg signed [15:0] Xe_3_real;
+    reg signed [15:0] Xe_3_imag;
+    reg signed [15:0] Xo_0_real;
+    reg signed [15:0] Xo_0_imag;
+    reg signed [15:0] Xo_1_real;
+    reg signed [15:0] Xo_1_imag;
+    reg signed [15:0] Xo_2_real;
+    reg signed [15:0] Xo_2_imag;
+    reg signed [15:0] Xo_3_real;
+    reg signed [15:0] Xo_3_imag;
+
+    reg signed [15:0] X_0_real;
+    reg signed [15:0] X_0_imag;
+    reg signed [15:0] X_1_real;
+    reg signed [15:0] X_1_imag;
+    reg signed [15:0] X_2_real;
+    reg signed [15:0] X_2_imag;
+    reg signed [15:0] X_3_real;
+    reg signed [15:0] X_3_imag;
+    reg signed [15:0] X_4_real;
+    reg signed [15:0] X_4_imag;
+    reg signed [15:0] X_5_real;
+    reg signed [15:0] X_5_imag;
+    reg signed [15:0] X_6_real;
+    reg signed [15:0] X_6_imag;
+    reg signed [15:0] X_7_real;
+    reg signed [15:0] X_7_imag;
+
+
+    reg signed [31:0] X_1_temp_real, X_1_temp_imag;
+    reg signed [31:0] X_2_temp_real, X_2_temp_imag;
+    reg signed [31:0] X_3_temp_real, X_3_temp_imag;
 
 assign s_ready = ~m_valid | m_ready;
 
@@ -282,8 +330,8 @@ always @(*) begin
     // W_8^3 = cos(3*pi/4) - j*sin(3*pi/4) = -0.707 - j*0.707
     X_3_temp_real = (r_Xo_3_real * -23170 - r_Xo_3_imag * 23170) >>> 15;
     X_3_temp_imag = (r_Xo_3_real * 23170 - r_Xo_3_imag * 23170) >>> 15;
-    X_3_real = r_Xe_3_real + temp_real;
-    X_3_imag = r_Xe_3_imag + temp_imag;
+    X_3_real = r_Xe_3_real + X_3_temp_real;
+    X_3_imag = r_Xe_3_imag + X_3_temp_imag;
 
 
     X_4_real = r_Xe_0_real - r_Xo_0_real;
