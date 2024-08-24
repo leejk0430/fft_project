@@ -11,8 +11,8 @@
 // Tool Versions:
 // Description: output FFT of number of 8 data each 8bit.
 //              Used radix-2 buttefly operation for FFT.
-//				Did not consider overflow.
-//				handshake ver.
+//              Did not consider overflow.
+//              handshake ver.
 // Dependencies:
 //
 // Revision:
