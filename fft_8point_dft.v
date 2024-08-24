@@ -25,8 +25,8 @@ module fft_8point(
     input 			clk,
     input 			reset_n,
 
-	input 			s_valid,
-	output 			s_ready,
+    input 			s_valid,
+    output 			s_ready,
     input signed [7:0] x [0:7],  // 8-point input sequence
 
     output 			m_valid,
