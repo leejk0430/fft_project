@@ -30,7 +30,7 @@ module fft_8point(
     input signed [7:0] x [0:7],  // 8-point input sequence
 
     output 			m_valid,
-	input 			m_ready,
+    input 			m_ready,
     output signed [15:0] m_X_0_real,
     output signed [15:0] m_X_0_imag,
     output signed [15:0] m_X_1_real,
