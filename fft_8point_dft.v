@@ -5,7 +5,7 @@
 // Create Date: 2024.08.24
 // Design Name: fft_8point
 // License : https://github.com/leejk0430/fft_project/blob/main/LICENSE
-// Module Name: 
+// Module Name:
 // Project Name:
 // Target Devices:
 // Tool Versions:
@@ -31,22 +31,22 @@ module fft_8point(
 
     output 			m_valid,
     input 			m_ready,
-    output signed [15:0] m_X_0_real,
-    output signed [15:0] m_X_0_imag,
-    output signed [15:0] m_X_1_real,
-    output signed [15:0] m_X_1_imag,
-    output signed [15:0] m_X_2_real,
-    output signed [15:0] m_X_2_imag, 
-    output signed [15:0] m_X_3_real,
-    output signed [15:0] m_X_3_imag, 
-    output signed [15:0] m_X_4_real,
-    output signed [15:0] m_X_4_imag, 
-    output signed [15:0] m_X_5_real,
-    output signed [15:0] m_X_5_imag, 
-    output signed [15:0] m_X_6_real,
-    output signed [15:0] m_X_6_imag, 
-    output signed [15:0] m_X_7_real,
-    output signed [15:0] m_X_7_imag 
+    output signed [31:0] m_X_0_real,
+    output signed [31:0] m_X_0_imag,
+    output signed [31:0] m_X_1_real,
+    output signed [31:0] m_X_1_imag,
+    output signed [31:0] m_X_2_real,
+    output signed [31:0] m_X_2_imag, 
+    output signed [31:0] m_X_3_real,
+    output signed [31:0] m_X_3_imag, 
+    output signed [31:0] m_X_4_real,
+    output signed [31:0] m_X_4_imag, 
+    output signed [31:0] m_X_5_real,
+    output signed [31:0] m_X_5_imag, 
+    output signed [31:0] m_X_6_real,
+    output signed [31:0] m_X_6_imag, 
+    output signed [31:0] m_X_7_real,
+    output signed [31:0] m_X_7_imag 
 );
 
     reg [2:0]  r_valid;
@@ -77,22 +77,22 @@ module fft_8point(
     reg [15:0] r_Xo_3_real;
     reg [15:0] r_Xo_3_imag;
         
-    reg [15:0] r_X_0_real;
-    reg [15:0] r_X_0_imag;
-    reg [15:0] r_X_1_real;
-    reg [15:0] r_X_1_imag;
-    reg [15:0] r_X_2_real;
-    reg [15:0] r_X_2_imag;
-    reg [15:0] r_X_3_real;
-    reg [15:0] r_X_3_imag;
-    reg [15:0] r_X_4_real;
-    reg [15:0] r_X_4_imag;
-    reg [15:0] r_X_5_real;
-    reg [15:0] r_X_5_imag;
-    reg [15:0] r_X_6_real;
-    reg [15:0] r_X_6_imag;
-    reg [15:0] r_X_7_real;
-    reg [15:0] r_X_7_imag;
+    reg [31:0] r_X_0_real;
+    reg [31:0] r_X_0_imag;
+    reg [31:0] r_X_1_real;
+    reg [31:0] r_X_1_imag;
+    reg [31:0] r_X_2_real;
+    reg [31:0] r_X_2_imag;
+    reg [31:0] r_X_3_real;
+    reg [31:0] r_X_3_imag;
+    reg [31:0] r_X_4_real;
+    reg [31:0] r_X_4_imag;
+    reg [31:0] r_X_5_real;
+    reg [31:0] r_X_5_imag;
+    reg [31:0] r_X_6_real;
+    reg [31:0] r_X_6_imag;
+    reg [31:0] r_X_7_real;
+    reg [31:0] r_X_7_imag;
 
 
 
@@ -122,22 +122,22 @@ module fft_8point(
     reg signed [15:0] Xo_3_real;
     reg signed [15:0] Xo_3_imag;
 
-    reg signed [15:0] X_0_real;
-    reg signed [15:0] X_0_imag;
-    reg signed [15:0] X_1_real;
-    reg signed [15:0] X_1_imag;
-    reg signed [15:0] X_2_real;
-    reg signed [15:0] X_2_imag;
-    reg signed [15:0] X_3_real;
-    reg signed [15:0] X_3_imag;
-    reg signed [15:0] X_4_real;
-    reg signed [15:0] X_4_imag;
-    reg signed [15:0] X_5_real;
-    reg signed [15:0] X_5_imag;
-    reg signed [15:0] X_6_real;
-    reg signed [15:0] X_6_imag;
-    reg signed [15:0] X_7_real;
-    reg signed [15:0] X_7_imag;
+    reg signed [31:0] X_0_real;
+    reg signed [31:0] X_0_imag;
+    reg signed [31:0] X_1_real;
+    reg signed [31:0] X_1_imag;
+    reg signed [31:0] X_2_real;
+    reg signed [31:0] X_2_imag;
+    reg signed [31:0] X_3_real;
+    reg signed [31:0] X_3_imag;
+    reg signed [31:0] X_4_real;
+    reg signed [31:0] X_4_imag;
+    reg signed [31:0] X_5_real;
+    reg signed [31:0] X_5_imag;
+    reg signed [31:0] X_6_real;
+    reg signed [31:0] X_6_imag;
+    reg signed [31:0] X_7_real;
+    reg signed [31:0] X_7_imag;
 
 
     reg signed [31:0] X_1_temp_real, X_1_temp_imag;
@@ -192,22 +192,22 @@ always @(posedge clk) begin
         r_Xo_3_imag <= 16'b0;
         
 
-        r_X_0_real <= 16'b0;
-        r_X_0_imag <= 16'b0;
-        r_X_1_real <= 16'b0;
-        r_X_1_imag <= 16'b0;
-        r_X_2_real <= 16'b0;
-        r_X_2_imag <= 16'b0;
-        r_X_3_real <= 16'b0;
-        r_X_3_imag <= 16'b0;
-        r_X_4_real <= 16'b0;
-        r_X_4_imag <= 16'b0;
-        r_X_5_real <= 16'b0;
-        r_X_5_imag <= 16'b0;
-        r_X_6_real <= 16'b0;
-        r_X_6_imag <= 16'b0;
-        r_X_7_real <= 16'b0;
-        r_X_7_imag <= 16'b0;
+        r_X_0_real <= 32'b0;
+        r_X_0_imag <= 32'b0;
+        r_X_1_real <= 32'b0;
+        r_X_1_imag <= 32'b0;
+        r_X_2_real <= 32'b0;
+        r_X_2_imag <= 32'b0;
+        r_X_3_real <= 32'b0;
+        r_X_3_imag <= 32'b0;
+        r_X_4_real <= 32'b0;
+        r_X_4_imag <= 32'b0;
+        r_X_5_real <= 32'b0;
+        r_X_5_imag <= 32'b0;
+        r_X_6_real <= 32'b0;
+        r_X_6_imag <= 32'b0;
+        r_X_7_real <= 32'b0;
+        r_X_7_imag <= 32'b0;
     end
     else if(s_ready) begin
         r_Xee_0_real <= Xee_0_real;
