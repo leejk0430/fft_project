@@ -21,13 +21,21 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-module fft_8point(
+module fft_8point_dft(
     input 			clk,
     input 			reset_n,
 
     input 			s_valid,
     output 			s_ready,
-    input signed [7:0] x [0:7],  // 8-point input sequence
+    input signed [7:0] x0,  // 8-point input sequence
+    input signed [7:0] x1,  // 8-point input sequence
+    input signed [7:0] x2,  // 8-point input sequence
+    input signed [7:0] x3,  // 8-point input sequence
+    input signed [7:0] x4,  // 8-point input sequence
+    input signed [7:0] x5,  // 8-point input sequence
+    input signed [7:0] x6,  // 8-point input sequence
+    input signed [7:0] x7,  // 8-point input sequence
+    
 
     output 			m_valid,
     input 			m_ready,
@@ -269,17 +277,17 @@ always @(*) begin
 
 //2-point DFT calculation
 
-    Xee_0_real = x[0] + x[4];  
-    Xee_1_real = x[0] - x[4];  
+    Xee_0_real = x0 + x4;  
+    Xee_1_real = x0 - x4;  
 
-    Xeo_0_real = x[2] + x[6];  
-    Xeo_1_real = x[2] - x[6];
+    Xeo_0_real = x2 + x6;  
+    Xeo_1_real = x2 - x6;
 
-    Xoe_0_real = x[1] + x[5]; 
-    Xoe_1_real = x[1] - x[5];  
+    Xoe_0_real = x1 + x5; 
+    Xoe_1_real = x1 - x5;  
 
-    Xoo_0_real = x[3] + x[7]; 
-    Xoo_1_real = x[3] - x[7]; 
+    Xoo_0_real = x3 + x7; 
+    Xoo_1_real = x3 - x7; 
 
 //4-point DFT calculation
 
@@ -302,7 +310,7 @@ always @(*) begin
     Xo_1_real = r_Xoe_0_real;
     Xo_1_imag = -r_Xoo_1_real;
     
-    Xo_2_real = r_Xoe_0_real - Xoo_0_real;
+    Xo_2_real = r_Xoe_0_real - r_Xoo_0_real;
     Xo_2_imag = 'b0;
     
     Xo_3_real = r_Xoe_1_real;
