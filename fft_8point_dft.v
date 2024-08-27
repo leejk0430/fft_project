@@ -59,48 +59,48 @@ module fft_8point_dft(
 
     reg [2:0]  r_valid;
     
-    reg [15:0] r_Xee_0_real;
-    reg [15:0] r_Xee_1_real;
-    reg [15:0] r_Xeo_0_real;
-    reg [15:0] r_Xeo_1_real;
-    reg [15:0] r_Xoe_0_real;
-    reg [15:0] r_Xoe_1_real;
-    reg [15:0] r_Xoo_0_real;
-    reg [15:0] r_Xoo_1_real;
+    reg signed [15:0] r_Xee_0_real;
+    reg signed [15:0] r_Xee_1_real;
+    reg signed [15:0] r_Xeo_0_real;
+    reg signed [15:0] r_Xeo_1_real;
+    reg signed [15:0] r_Xoe_0_real;
+    reg signed [15:0] r_Xoe_1_real;
+    reg signed [15:0] r_Xoo_0_real;
+    reg signed [15:0] r_Xoo_1_real;
 
-    reg [15:0] r_Xe_0_real;
-    reg [15:0] r_Xe_0_imag;
-    reg [15:0] r_Xe_1_real;
-    reg [15:0] r_Xe_1_imag;
-    reg [15:0] r_Xe_2_real;
-    reg [15:0] r_Xe_2_imag;
-    reg [15:0] r_Xe_3_real;
-    reg [15:0] r_Xe_3_imag;
-    reg [15:0] r_Xo_0_real;
-    reg [15:0] r_Xo_0_imag;
-    reg [15:0] r_Xo_1_real;
-    reg [15:0] r_Xo_1_imag;
-    reg [15:0] r_Xo_2_real;
-    reg [15:0] r_Xo_2_imag;
-    reg [15:0] r_Xo_3_real;
-    reg [15:0] r_Xo_3_imag;
+    reg signed [15:0] r_Xe_0_real;
+    reg signed [15:0] r_Xe_0_imag;
+    reg signed [15:0] r_Xe_1_real;
+    reg signed [15:0] r_Xe_1_imag;
+    reg signed [15:0] r_Xe_2_real;
+    reg signed [15:0] r_Xe_2_imag;
+    reg signed [15:0] r_Xe_3_real;
+    reg signed [15:0] r_Xe_3_imag;
+    reg signed [15:0] r_Xo_0_real;
+    reg signed [15:0] r_Xo_0_imag;
+    reg signed [15:0] r_Xo_1_real;
+    reg signed [15:0] r_Xo_1_imag;
+    reg signed [15:0] r_Xo_2_real;
+    reg signed [15:0] r_Xo_2_imag;
+    reg signed [15:0] r_Xo_3_real;
+    reg signed [15:0] r_Xo_3_imag;
         
-    reg [31:0] r_X_0_real;
-    reg [31:0] r_X_0_imag;
-    reg [31:0] r_X_1_real;
-    reg [31:0] r_X_1_imag;
-    reg [31:0] r_X_2_real;
-    reg [31:0] r_X_2_imag;
-    reg [31:0] r_X_3_real;
-    reg [31:0] r_X_3_imag;
-    reg [31:0] r_X_4_real;
-    reg [31:0] r_X_4_imag;
-    reg [31:0] r_X_5_real;
-    reg [31:0] r_X_5_imag;
-    reg [31:0] r_X_6_real;
-    reg [31:0] r_X_6_imag;
-    reg [31:0] r_X_7_real;
-    reg [31:0] r_X_7_imag;
+    reg signed [31:0] r_X_0_real;
+    reg signed [31:0] r_X_0_imag;
+    reg signed [31:0] r_X_1_real;
+    reg signed [31:0] r_X_1_imag;
+    reg signed [31:0] r_X_2_real;
+    reg signed [31:0] r_X_2_imag;
+    reg signed [31:0] r_X_3_real;
+    reg signed [31:0] r_X_3_imag;
+    reg signed [31:0] r_X_4_real;
+    reg signed [31:0] r_X_4_imag;
+    reg signed [31:0] r_X_5_real;
+    reg signed [31:0] r_X_5_imag;
+    reg signed [31:0] r_X_6_real;
+    reg signed [31:0] r_X_6_imag;
+    reg signed [31:0] r_X_7_real;
+    reg signed [31:0] r_X_7_imag;
 
 
 
@@ -149,8 +149,10 @@ module fft_8point_dft(
 
 
     reg signed [31:0] X_1_temp_real, X_1_temp_imag;
-    reg signed [31:0] X_2_temp_real, X_2_temp_imag;
     reg signed [31:0] X_3_temp_real, X_3_temp_imag;
+    reg signed [31:0] X_5_temp_real, X_5_temp_imag;
+    reg signed [31:0] X_7_temp_real, X_7_temp_imag;
+
 
 assign s_ready = ~m_valid | m_ready;
 
@@ -300,14 +302,14 @@ always @(*) begin
     Xe_2_real = r_Xee_0_real - r_Xeo_0_real;
     Xe_2_imag = 'b0;
     
-    Xe_3_real = r_Xee_0_real;
+    Xe_3_real = r_Xee_1_real;
     Xe_3_imag = r_Xeo_1_real;
 
     
     Xo_0_real = r_Xoe_0_real + r_Xoo_0_real;
     Xo_0_imag = 'b0;
     
-    Xo_1_real = r_Xoe_0_real;
+    Xo_1_real = r_Xoe_1_real;
     Xo_1_imag = -r_Xoo_1_real;
     
     Xo_2_real = r_Xoe_0_real - r_Xoo_0_real;
@@ -323,36 +325,37 @@ always @(*) begin
 
     // W_8^1 = cos(pi/4) - j*sin(pi/4) = 0.707 - j*0.707
     // 0.707 is approximately 23170 in a 16-bit signed fixed-point
-    X_1_temp_real = (r_Xo_1_real * 23170 - r_Xo_1_imag * 23170) >>> 15;
-    X_1_temp_imag = (r_Xo_1_real * 23170 + r_Xo_1_imag * 23170) >>> 15;
+    X_1_temp_real = (r_Xo_1_real *  23170 + r_Xo_1_imag * 23170) >>> 15; //bug....was first r_Xo_1_real * 23170 - r_Xo_1_imag * 23170
+    X_1_temp_imag = (r_Xo_1_real * -23170 + r_Xo_1_imag * 23170) >>> 15;
     X_1_real = r_Xe_1_real + X_1_temp_real;
     X_1_imag = r_Xe_1_imag + X_1_temp_imag;
 
-
-    X_2_temp_real = -r_Xo_2_imag;
-    X_2_temp_imag = r_Xo_2_real;
-    X_2_real = r_Xe_2_real + X_2_temp_real;
-    X_2_imag = r_Xe_2_imag + X_2_temp_imag;
-
+    X_2_real = r_Xe_2_real +r_Xo_2_imag;
+    X_2_imag = r_Xe_2_imag -r_Xo_2_real; // bug...was first +r_Xo_2_real
 
     // W_8^3 = cos(3*pi/4) - j*sin(3*pi/4) = -0.707 - j*0.707
-    X_3_temp_real = (r_Xo_3_real * -23170 - r_Xo_3_imag * 23170) >>> 15;
-    X_3_temp_imag = (r_Xo_3_real * 23170 - r_Xo_3_imag * 23170) >>> 15;
+    X_3_temp_real = (r_Xo_3_real * -23170 + r_Xo_3_imag *  23170) >>> 15; // bug... was first r_Xo_3_real * -23170 - r_Xo_3_imag * 23170
+    X_3_temp_imag = (r_Xo_3_real * -23170 + r_Xo_3_imag * -23170) >>> 15; // bug... was first r_Xo_3_real * +23170 - r_Xo_3_imag * 23170
     X_3_real = r_Xe_3_real + X_3_temp_real;
     X_3_imag = r_Xe_3_imag + X_3_temp_imag;
+
 
 
     X_4_real = r_Xe_0_real - r_Xo_0_real;
     X_4_imag = r_Xe_0_imag - r_Xo_0_imag;
 
-    X_5_real = r_Xe_1_real - X_1_temp_real;  
-    X_5_imag = r_Xe_1_imag - X_1_temp_imag;
+    X_5_temp_real = (r_Xo_1_real * -23170 + r_Xo_1_imag * -23170) >>> 15; // bug... didn't write temp in the first place
+    X_5_temp_imag = (r_Xo_1_real *  23170 + r_Xo_1_imag * -23170) >>> 15; // bug... didn't write temp in the first place
+    X_5_real = r_Xe_1_real + X_5_temp_real;  
+    X_5_imag = r_Xe_1_imag + X_5_temp_imag;
 
-    X_6_real = Xe_2_real - X_2_temp_real; 
-    X_6_imag = Xe_2_imag - X_2_temp_imag;
+    X_6_real = r_Xe_2_real - r_Xo_2_imag; 
+    X_6_imag = r_Xe_2_imag + r_Xo_2_real;
 
-    X_7_real = Xe_3_real - X_3_temp_real; 
-    X_7_imag = Xe_3_imag - X_3_temp_imag;
+    X_7_temp_real = (r_Xo_3_real *  23170 + r_Xo_3_imag * -23170) >>> 15; // bug... didn't write temp in the first place
+    X_7_temp_imag = (r_Xo_3_real *  23170 + r_Xo_3_imag *  23170) >>> 15; // bug... didn't write temp in the first place
+    X_7_real = r_Xe_3_real + X_7_temp_real; 
+    X_7_imag = r_Xe_3_imag + X_7_temp_imag;
 
 
  end
